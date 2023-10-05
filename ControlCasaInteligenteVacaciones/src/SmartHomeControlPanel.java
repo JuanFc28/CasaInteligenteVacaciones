@@ -72,7 +72,55 @@ public class SmartHomeControlPanel extends JFrame implements HomeObserver {
             public void actionPerformed(ActionEvent e) {
                 if (!commandStack.isEmpty()) {
                     Command lastCommand = commandStack.pop();
-                    lastCommand.undo();
+                    lastCommand.undo();     
+                    if(lastCommand.getClass().getName().equals("LivingroomLightOffCommand")) {
+                        updateLight(true);
+                    }
+                    if(lastCommand.getClass().getName().equals("LivingRoomLightOnCommand")) {
+                        updateLight(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("CeilingFanOnCommand")) {
+                        updateFan(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("CeilingFanOffCommand")) {
+                        updateFan(true);
+                    }                
+                    if(lastCommand.getClass().getName().equals("GarageDoorUpCommand")) {
+                        updateGarage(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("GarageDoorDownCommand")) {
+                        updateGarage(true);
+                    }  
+                    if(lastCommand.getClass().getName().equals("StereoOnWithCDCommand")) {
+                        updateStereo(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("StereoOffCommand")) {
+                        updateStereo(true);
+                    }  
+                    if(lastCommand.getClass().getName().equals("HottubOnCommand")) {
+                        updateHottub(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("HottubOffCommand")) {
+                        updateHottub(true);
+                    } 
+                    if(lastCommand.getClass().getName().equals("tvOnCommand")) {
+                        updateTV(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("tvOffCommand")) {
+                        updateTV(true);
+                    } 
+                    if(lastCommand.getClass().getName().equals("SecurityCameraOnCommand")) {
+                        updateCamera(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("SecurityCameraOffCommand")) {
+                        updateCamera(true);
+                    } 
+                    if(lastCommand.getClass().getName().equals("DoorLockLockCommand")) {
+                        updateLock(false);
+                    }   
+                    if(lastCommand.getClass().getName().equals("DoorLockUnlockCommand")) {
+                        updateLock(true);
+                    }   
                 }
             }
         });
@@ -219,8 +267,57 @@ public class SmartHomeControlPanel extends JFrame implements HomeObserver {
                         while (!commandStack.isEmpty()) {
                             Command command = commandStack.pop();
                             command.execute();
+                            
+                    if(command.getClass().getName().equals("LivingroomLightOffCommand")) {
+                        updateLight(true);
+                    }
+                    if(command.getClass().getName().equals("LivingRoomLightOnCommand")) {
+                        updateLight(false);
+                    }   
+                    if(command.getClass().getName().equals("CeilingFanOnCommand")) {
+                        updateFan(true);
+                    }   
+                    if(command.getClass().getName().equals("CeilingFanOffCommand")) {
+                        updateFan(false);
+                    }                
+                    if(command.getClass().getName().equals("GarageDoorUpCommand")) {
+                        updateGarage(true);
+                    }   
+                    if(command.getClass().getName().equals("GarageDoorDownCommand")) {
+                        updateGarage(false);
+                    }  
+                    if(command.getClass().getName().equals("StereoOnWithCDCommand")) {
+                        updateStereo(true);
+                    }   
+                    if(command.getClass().getName().equals("StereoOffCommand")) {
+                        updateStereo(false);
+                    }  
+                    if(command.getClass().getName().equals("HottubOnCommand")) {
+                        updateHottub(true);
+                    }   
+                    if(command.getClass().getName().equals("HottubOffCommand")) {
+                        updateHottub(false);
+                    } 
+                    if(command.getClass().getName().equals("tvOnCommand")) {
+                        updateTV(true);
+                    }   
+                    if(command.getClass().getName().equals("tvOffCommand")) {
+                        updateTV(false);
+                    } 
+                    if(command.getClass().getName().equals("SecurityCameraOnCommand")) {
+                        updateCamera(true);
+                    }   
+                    if(command.getClass().getName().equals("SecurityCameraOffCommand")) {
+                        updateCamera(false);
+                    } 
+                    if(command.getClass().getName().equals("DoorLockLockCommand")) {
+                        updateLock(true);
+                    }   
+                    if(command.getClass().getName().equals("DoorLockUnlockCommand")) {
+                        updateLock(false);
+                    }  
                             try {
-                                Thread.sleep(10000); // Retraso de 10 segundos
+                                Thread.sleep(5000); // Retraso de 10 segundos
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
                             }
